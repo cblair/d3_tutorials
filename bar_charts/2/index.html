@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Bar Charts 1</title>
+</head>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<style>
+    .chart div {
+      font: 10px sans-serif;
+      background-color: steelblue;
+      text-align: right;
+      padding: 3px;
+      margin: 1px;
+      color: white;
+      //width: 0;
+    }
+</style>
+
+<body>
+
+<p>See tutorial at <a href="http://bost.ocks.org/mike/bar/">
+    http://bost.ocks.org/mike/bar/</a>.</p>
+
+<div class="chart">
+    <!--<div class="bar"></div>-->
+    <!--<div class="bar"></div>-->
+    <!--<div class="bar"></div>-->
+    <!--<div class="bar"></div>-->
+    <!--<div class="bar"></div>-->
+    <!--<div class="bar"></div>-->
+</div>
+
+<script>
+    var data = [4,8,15,16,23,42],
+        getXFromScale = d3.scale.linear()
+                .domain([0, d3.max(data)])
+                .range([0, 80]);
+
+    //For when div.bar already exists...
+    //d3.selectAll(".bar")
+    //.data([4,8,15,16,23,42])
+    //.style("width", function(d) {
+    //    console.log(d);
+    //    return d * 10 + "px";})
+    //.text(function(d) {return d;})
+
+    d3.selectAll(".chart")
+    .selectAll("div")
+    .data(data)
+    .enter()
+    .append("div")
+    .style("width", function(d) {
+        console.log(d);
+        return getXFromScale(d) * 10 + "px";})
+    .text(function(d) {return d;})
+    ;
+</script>
+
+</body>
+</html>
